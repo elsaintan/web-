@@ -282,7 +282,7 @@
         </div>
     </div>
     {{--  modal  --}}
-     <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
         
         <!-- Modal content-->

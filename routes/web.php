@@ -36,7 +36,7 @@ Route::group(['prefix' => 'Administrator', 'middleware' =>'auth'], function () {
     Route::resource('home', 'HomeController');
     Route::resource('kategori', 'kategoriSuratController');
     //Route::get('kategori/data/{id}','kategoriSuratController@data')->name('kategori.data');//  m
-    Route::resource('pengajuan', 'dataPengajuanController');
+    Route::resource('pengajuan', 'dataPengajuanController'); 
 
     Route::post('/uploadImage', 'dataPengajuanController@uploadImage')->name('upload');
     Route::post('/form-pengajuan', 'dataPengajuanController@pilihSurat')->name('form-surat-admin');
@@ -45,7 +45,7 @@ Route::group(['prefix' => 'Administrator', 'middleware' =>'auth'], function () {
     Route::get('/riwayat', 'HomeController@riwayat')->name('riwayat.pengajuan');
     Route::get('/dashboard-kades', 'HomeController@dashboardKades')->name('dashboard-kades');
 
-    Route::get('/list-kategori/{id}', 'HomeController@listkategori')->name('list.kategori');
+    Route::get('/list-kategori/{id}', 'HomeController@listkategori')->name('list.kategori'); 
 
     Route::get('/verifikasi-kelahiran/{id}', 'HomeController@verifKelahiran')->name('verifikasi-lahir');
     Route::get('/verifikasi-kematian/{id}', 'HomeController@verifKematian')->name('verifikasi-mati');
@@ -53,7 +53,7 @@ Route::group(['prefix' => 'Administrator', 'middleware' =>'auth'], function () {
     Route::get('/verifikasi-pengantar-pindah/{id}', 'HomeController@verifPengantarPindah')->name('verifikasi-pindah');
     Route::get('/verifikasi-permohonan-pindah/{id}', 'HomeController@verifPermohonanPindah')->name('verifikasi-permohonan-pindah');
     Route::get('/verifikasi-pengantar-datang/{id}', 'HomeController@verifSuratPindahDatangWNI')->name('verifikasi-datang');
-    Route::get('/verifikasi-permohonan-pindah-datang-WNI/{id}', 'HomeController@verifPermohonanDatang')->name('verifikasi-permohonan-datang');
+    Route::get('/verifikasi-keterangan-tidak-mampu/{id}', 'HomeController@verifTidakMampu')->name('verifikasi-ket-tidak-mampu');
 
     //Route::get('/list-kategori/data/{pesanan}', 'HomeController@listdatakategori')->name('list.kategori.data');
     Route::get('/cekpesanan','HomeController@cekPesanan')->name('cek.pesanan');

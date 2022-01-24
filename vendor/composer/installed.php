@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '5707b2b5311b8a8109371daac49a69d29c68dd57',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -22,12 +22,12 @@
     ),
     'barryvdh/laravel-dompdf' => 
     array (
-      'pretty_version' => 'v0.8.7',
-      'version' => '0.8.7.0',
+      'pretty_version' => 'v0.8.6',
+      'version' => '0.8.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '30310e0a675462bf2aa9d448c8dcbf57fbcc517d',
+      'reference' => 'd7108f78cf5254a2d8c224542967f133e5a6d4e8',
     ),
     'brick/math' => 
     array (
@@ -435,12 +435,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '5707b2b5311b8a8109371daac49a69d29c68dd57',
     ),
     'laravel/tinker' => 
     array (
@@ -750,8 +750,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

@@ -90,7 +90,7 @@
                                       <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-datang', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    
                                           @break
                                       @case('7')
-                                      <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-permohonan-datang', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    
+                                      <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-ket-tidak-mampu', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    
                                           @break
                                       @default         
                                   @endswitch

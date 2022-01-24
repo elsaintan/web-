@@ -252,7 +252,7 @@
                             <div class="form-group col-md-12">
                                 <label for="inputState">Foto KTP Saksi 1</label>
                                 <div class="input-group"> 
-                                    <input class="form-control" name="ktpsaksi2" type="file" id="actual-btn"/>
+                                    <input class="form-control" name="ktpsaksi1" type="file" id="actual-btn"/>
                                 </div>
                             </div> 
                             <div class="form-group col-md-12">

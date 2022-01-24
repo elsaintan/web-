@@ -8,7 +8,7 @@ use App\Warga;
 use App\KategoriSurat;
 use App\Pesanan;
 use Illuminate\Support\Facades\Validator;
-use PDF;
+use Barryvdh\DomPDF\PDF as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;

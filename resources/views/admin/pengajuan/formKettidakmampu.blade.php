@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-md-12 card shadow mb-4">
-            <form class="mt-3 mb-2" action="{{ route('warga.pengajuan.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="mt-3 mb-2" action="{{ route('pengajuan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf                    
                     <input hidden value="{{ $kategori }}" name="kategori" >
                     <div class="form-group col-md-8">
