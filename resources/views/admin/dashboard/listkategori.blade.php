@@ -81,7 +81,7 @@
                                       <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-umum', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    
                                           @break
                                       @case('4')
-                                      <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-pindah', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    
+                                      <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-dom', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    
                                           @break
                                       @case('5')
                                       <a class="btn btn-sm btn-warning" href="{{ route('verifikasi-permohonan-pindah', $row->id) }}"><i class="fa fa-eye"></i> Verifikasi</a>    

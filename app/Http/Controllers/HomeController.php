@@ -116,6 +116,17 @@ class HomeController extends Controller
                         ->first();              
         return view('admin.dashboard.verifUmum', compact('data'));
     }
+    public function verifPernyataanDom($id)
+    {
+        $data = DB::table('data_pengajuans')
+                        ->join('data_pernyataan_dom', 'data_pengajuans.data','=','data_pernyataan_dom.id')//('tabel1','tabel2.fkTabel2',=,'Tabel1.pk')
+                        ->join('pesanans','data_pengajuans.id','=','pesanans.data_pengajuan_id')//('tabel1','tabel2pk',=,'tabel1.fk'
+                        ->where('data_pengajuans.id', $id)
+                        ->select('data_pernyataan_dom.*','data_pernyataan_dom.id AS data_id','data_pengajuans.id AS pengajuan_id','pesanans.id AS pesanan_id','data_pengajuans.kategori_surat_id AS halaman','nama_pemesan')
+                        ->first();
+        //dd($data);              
+        return view('admin.dashboard.verifPernyataanDom', compact('data'));
+    }
     public function verifPengantarPindah($id)
     {
         $data = DB::table('data_pengajuans')
@@ -322,31 +333,24 @@ class HomeController extends Controller
                           'keperluan' => $request['keperluan'],                              
                         ]);    
               break;
-            //pengantar pindah
+            //pernyataan domisili
             case ('4'):
-                 $no_surat = $request->id_pesanan.'/'.'Sinduharjo/'.tgl_romawi(Carbon::now()->format('m')).'/'.Carbon::now()->format('Y');//tgl_romawi(Carbon::now()->format('m')).'/'. 
-              $data = DB::table('data_pengantar_pindah') 
-                        ->where('id', $request['id_data'])
-                        ->update([
-                          'nik' => $request['nik'],
-                          'nama' => $request['nama'],
-                          'tempat_lahir' => $request['tempat_lahir'],
-                          'tgl_lahir' => $request['tgl_lahir'],
-                          'no_kk' => $request['no_kk'],
-                          'nama_kk' => $request['nama_kk'],
-                          'alamat' => $request['alamat'],
-                          'desa' => $request['desa'],
-                          'desa' => $request['desa'],
-                          'kecamatan' => $request['kecamatan'],
-                          'tujuan_alamat' => $request['tujuan_alamat'],
-                          'tujuan_desa' => $request['tujuan_desa'],
-                          'tujuan_kecamatan' => $request['tujuan_kecamatan'],
-                          'tujuan_kabupaten' => $request['tujuan_kabupaten'],
-                          'tujuan_provinsi' => $request['tujuan_provinsi'],
-                          'jumlah_pindah' => $request['jumlah_pindah'],                              
-                        ]);    
-
-              break;
+                $no_surat = $request->id_pesanan.'/'.'UM/'.tgl_romawi(Carbon::now()->format('m')).'/'.Carbon::now()->format('Y');//tgl_romawi(Carbon::now()->format('m')).'/'. 
+                $data = DB::table('data_pernyataan_dom') 
+                          ->where('id', $request['id_data'])
+                          ->update([
+                            'nama' => $request['nama'],
+                            'nik' => $request['nik'],
+                            'tmpt_lahir' => $request['tmpt_lahir'],
+                            'tgl_lahir' => $request['tgl_lahir'],
+                            'agama' => $request['agama'],
+                            'jk' => $request['jk'],
+                            'pekerjaan' => $request['pekerjaan'],
+                            'alamat' => $request['alamat'],
+                            'alamat_baru' => $request['alamat_baru'],                        
+                          ]);    
+  
+                break;
             //permohonan pindah
             case ('5'):
                 $no_surat = '471.21/'.$request->id_pesanan.'/'.'Sinduharjo/'.tgl_romawi(Carbon::now()->format('m')).'/'.Carbon::now()->format('Y');//tgl_romawi(Carbon::now()->format('m')).'/'. 
@@ -563,7 +567,7 @@ class HomeController extends Controller
                 $pdf = PDF::loadview('suratketerangan', compact('pengajuan','kategori'))->setPaper('f4', 'portrait');
                 return $pdf->stream();
                 break;
-            //pengantar pindah
+            //surat pernyataan domisili
             case '4':
                 $kategori = DB::table('kategori_surats')
                         ->join('data_pengajuans', 'kategori_surats.id','=','data_pengajuans.kategori_surat_id')
@@ -571,12 +575,12 @@ class HomeController extends Controller
                         ->select('kategori_surats.*')
                         ->first(); 
                 $pengajuan = DB::table('data_pengajuans')
-                        ->join('data_pengantar_pindah', 'data_pengajuans.data','=','data_pengantar_pindah.id')
+                        ->join('data_pernyataan_dom', 'data_pengajuans.data','=','data_pernyataan_dom.id')
                         ->join('pesanans','data_pengajuans.id','=','pesanans.data_pengajuan_id')
                         ->where('data_pengajuans.id', $id)
-                        ->select('data_pengantar_pindah.*','nama_pemesan','nomer_surat')
+                        ->select('data_pernyataan_dom.*','nama_pemesan')
                         ->first(); 
-                $pdf = PDF::loadview('suratpengantarpindah', compact('pengajuan','kategori'))->setPaper('f4', 'portrait');
+                $pdf = PDF::loadview('suratpernyataandom', compact('pengajuan','kategori'))->setPaper('f4', 'portrait');
                 return $pdf->stream();
                 break;
             //permohonan pindah wni

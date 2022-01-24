@@ -50,7 +50,7 @@ Route::group(['prefix' => 'Administrator', 'middleware' =>'auth'], function () {
     Route::get('/verifikasi-kelahiran/{id}', 'HomeController@verifKelahiran')->name('verifikasi-lahir');
     Route::get('/verifikasi-kematian/{id}', 'HomeController@verifKematian')->name('verifikasi-mati');
     Route::get('/verifikasi-umum/{id}', 'HomeController@verifUmum')->name('verifikasi-umum');
-    Route::get('/verifikasi-pengantar-pindah/{id}', 'HomeController@verifPengantarPindah')->name('verifikasi-pindah');
+    Route::get('/verifikasi-pernyataan-domisili/{id}', 'HomeController@verifPernyataanDom')->name('verifikasi-dom');
     Route::get('/verifikasi-permohonan-pindah/{id}', 'HomeController@verifPermohonanPindah')->name('verifikasi-permohonan-pindah');
     Route::get('/verifikasi-pengantar-datang/{id}', 'HomeController@verifSuratPindahDatangWNI')->name('verifikasi-datang');
     Route::get('/verifikasi-keterangan-tidak-mampu/{id}', 'HomeController@verifTidakMampu')->name('verifikasi-ket-tidak-mampu');

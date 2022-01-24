@@ -55,7 +55,7 @@ class dataPengajuanController extends Controller
                 return view('admin.pengajuan.umumForm',compact('kategori'));
               break;
             case ('4'):
-                return view('admin.pengajuan.pindahForm',compact('kategori'));
+                return view('admin.pengajuan.suratPernyataanDomisili',compact('kategori'));
               break;
             case ('5'):
                 return view('admin.pengajuan.formPermohonanPindahWNI',compact('kategori'));
@@ -287,33 +287,25 @@ class dataPengajuanController extends Controller
                               ->orderBy('id','desc')
                               ->first();
               break;
-            //pengantar pindah
+            //pernyataan domisili
             case ('4'):
-                            //$no_surat = '472.11';
-
-              $data = DB::table('data_pengantar_pindah') 
-                        ->insert([
-                          'nik' => $request['nik'],
-                          'nama' => $request['nama'],
-                          'tempat_lahir' => $request['tmpt_lahir'],
-                          'tgl_lahir' => $request['tgl_lahir'],
-                          'no_kk' => $request['no_kk'],
-                          'nama_kk' => $request['nama_kk'],
-                          'alamat' => $request['alamat'],
-                          'desa' => $request['desa'],
-                          'desa' => $request['desa'],
-                          'kecamatan' => $request['kecamatan'],
-                          'tujuan_alamat' => $request['tujuan_alamat'],
-                          'tujuan_desa' => $request['tujuan_desa'],
-                          'tujuan_kecamatan' => $request['tujuan_kecamatan'],
-                          'tujuan_kabupaten' => $request['tujuan_kabupaten'],
-                          'tujuan_provinsi' => $request['tujuan_provinsi'],
-                          'jumlah_pindah' => $request['jumlah_pindah'],                              
-                        ]);    
-              $cek_id = DB::table('data_pengantar_pindah')
-                          ->orderBy('id','desc')
-                          ->first();
-              break;
+                //$no_surat = '472.11';
+                $data = DB::table('data_pernyataan_dom') 
+                            ->insert([
+                              'nik' => $request['nik'],
+                              'nama' => $request['nama'],
+                              'tmpt_lahir' => $request['tmpt_lahir'],
+                              'tgl_lahir' => $request['tgl_lahir'],
+                              'alamat' => $request['alamat'],
+                              'agama' => $request['agama'],
+                              'pekerjaan' => $request['pekerjaan'],
+                              'jk' => $request['jk'],
+                              'alamat_baru' => $request['alamat_baru'],                        
+                            ]);                               
+                  $cek_id = DB::table('data_pernyataan_dom')
+                              ->orderBy('id','desc')
+                              ->first();
+                  break;
             //permohonan pindah
             case ('5'):
               //dd($request->all());
