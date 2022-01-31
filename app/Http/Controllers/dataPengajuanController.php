@@ -126,7 +126,7 @@ class dataPengajuanController extends Controller
                               'nama_kk' => $request['nm_kk'],
                               'foto_kk' => $kk,
                               'surat_keterangan_rtrw' => $suket_rtrw,
-                              'surat_ket_kelahiran' => $suketlahir,
+                              'surat_ket_kelahiran' => $suketlahir, 
                               'ktp_ibu' => $ktpibu,
                               'ktp_ayah' => $ktpayah,
                               'ktp_saksi1' => $ktpsaksi1,

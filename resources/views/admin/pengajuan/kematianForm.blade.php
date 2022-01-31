@@ -297,7 +297,7 @@
                     <div class="text-left mt-4 mb-4">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
-            </form>
+            </form> 
         </div>
     </div>
 @endsection

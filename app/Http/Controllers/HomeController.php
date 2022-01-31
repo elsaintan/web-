@@ -13,11 +13,10 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-//use PDF;
+use PDF;
 use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use Auth;
-use Barryvdh\DomPDF\PDF as PDF;
 
 class HomeController extends Controller
 {

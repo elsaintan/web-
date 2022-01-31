@@ -22,7 +22,7 @@ class WargaController extends Controller
     public function dashboard()
     {
         // dd(Auth::guard('warga')->id());
-        $kategori = KategoriSurat::get();
+        $kategori = KategoriSurat::get(); 
         //return view('admin.pengajuan.create', compact('kategori'));
         return view('warga.pengajuanwarga', compact('kategori'));
 
@@ -71,10 +71,41 @@ class WargaController extends Controller
         switch ($kat) {
             //kelahiran
             case ('1'):
+              $fileName1 = time().'_'.'kk'.$request->no_kk.'.'.$request->file('kk')->getClientOriginalExtension();
+              $kk = $request->file('kk')->storeAs('kelahiran', $fileName1, 'public');
+
+              $fileName2 = time().'_'.'superrtrw'.$request->file('superrt')->getClientOriginalName();
+              $suket_rtrw = $request->file('superrt')->storeAs('kelahiran', $fileName2, 'public');
+
+              $fileName3 = time().'_'.'suketkelahiran'.$request->file('suketkelahiran')->getClientOriginalName();
+              $suketlahir = $request->file('suketkelahiran')->storeAs('kelahiran', $fileName3, 'public');
+
+              $fileName4 = time().'_'.'ktpibu'.$request->ibu_nik.'.'.$request->file('ktpibu')->getClientOriginalExtension();
+              $ktpibu = $request->file('ktpibu')->storeAs('kelahiran', $fileName4, 'public');
+
+              $fileName5 = time().'_'.'ktpayah'.$request->ayah_nik.'.'.$request->file('ktpayah')->getClientOriginalExtension();
+              $ktpayah = $request->file('ktpayah')->storeAs('kelahiran', $fileName5, 'public');
+
+              $fileName6 = time().'_'.'ktpsaksi1'.$request->saksi1_nik.'.'.$request->file('ktpsaksi1')->getClientOriginalExtension();
+              $ktpsaksi1 = $request->file('ktpsaksi1')->storeAs('kelahiran', $fileName6, 'public');
+
+              $fileName7 = time().'_'.'ktpsaksi2'.$request->saksi2_nik.'.'.$request->file('ktpsaksi2')->getClientOriginalExtension();
+              $ktpsaksi2 = $request->file('ktpsaksi2')->storeAs('kelahiran', $fileName7, 'public');
+
+              $fileName8 = time().'_'.'suratnikah'.$request->file('kk')->getClientOriginalName();
+              $suratnikah = $request->file('suratnikah')->storeAs('kelahiran', $fileName8, 'public');
                 $data = DB::table('data_kelahiran') 
                             ->insert([
                               'no_kk' => $request['no_kk'],
                               'nama_kk' => $request['nm_kk'],
+                              'foto_kk' => $kk,
+                              'surat_keterangan_rtrw' => $suket_rtrw,
+                              'surat_ket_kelahiran' => $suketlahir,
+                              'ktp_ibu' => $ktpibu,
+                              'ktp_ayah' => $ktpayah,
+                              'ktp_saksi1' => $ktpsaksi1,
+                              'ktp_saksi2' => $ktpsaksi2,
+                              'surat_nikah' => $suratnikah,
                               'nik' => $request['nik'],
                               'nama' => $request['nama_bayi'],
                               'jk' => $request['jk'],
@@ -126,11 +157,35 @@ class WargaController extends Controller
               break;
             //kematian
             case ('2'):
+              $fileName2 = time().'_'.'super'.'.'.$request->file('super')->getClientOriginalExtension();
+              $super = $request->file('super')->storeAs('kematian', $fileName2, 'public');
+
+              $fileName3 = time().'_'.'suket'.'.'.$request->file('suket')->getClientOriginalExtension();
+              $suket = $request->file('suket')->storeAs('kematian', $fileName3, 'public');
+
+              $fileName4 = time().'_'.'ktpmeninggal'.'.'.$request->file('ktpmeninggal')->getClientOriginalExtension();
+              $ktp = $request->file('ktpmeninggal')->storeAs('kematian', $fileName4, 'public');
+
+              $fileName5 = time().'_'.'kk'.'.'.$request->file('kk')->getClientOriginalExtension();
+              $kk = $request->file('kk')->storeAs('kematian', $fileName5, 'public');
+
+              $fileName6 = time().'_'.'ktpsaksi1'.$request->saksi1_nik.'.'.$request->file('ktpsaksi1')->getClientOriginalExtension();
+              $ktpsaksi1 = $request->file('ktpsaksi1')->storeAs('kematian', $fileName6, 'public');
+
+              $fileName7 = time().'_'.'ktpsaksi2'.$request->saksi2_nik.'.'.$request->file('ktpsaksi2')->getClientOriginalExtension();
+              $ktpsaksi2 = $request->file('ktpsaksi2')->storeAs('kematian', $fileName7, 'public');
+
               $data = DB::table('data_kematian') 
                       ->insert([
                         'no_kk' => $request['no_kk'],
                         'nama_kk' => $request['nm_kk'],
                         'nik' => $request['nik'],
+                        'super' => $super,
+                        'suket' => $suket,
+                        'ktp' => $ktp,
+                        'kk' => $kk,
+                        'ktp_saksi1' => $ktpsaksi1,
+                        'ktp_saksi2' => $ktpsaksi2,
                         'nama' => $request['nama'],
                         'jk' => $request['jk'],
                         'tmpt_lahir' => $request['tmpt_lahir'],
@@ -202,31 +257,24 @@ class WargaController extends Controller
                               ->orderBy('id','desc')
                               ->first();
               break;
-            //pengantar pindah
+            //pernyataan domisili
             case ('4'):
-              $data = DB::table('data_pengantar_pindah') 
-                        ->insert([
-                          'nik' => $request['nik'],
-                          'nama' => $request['nama'],
-                          'tempat_lahir' => $request['tempat_lahir'],
-                          'tgl_lahir' => $request['tgl_lahir'],
-                          'no_kk' => $request['no_kk'],
-                          'nama_kk' => $request['nama_kk'],
-                          'alamat' => $request['alamat'],
-                          'desa' => $request['desa'],
-                          'desa' => $request['desa'],
-                          'kecamatan' => $request['kecamatan'],
-                          'tujuan_alamat' => $request['tujuan_alamat'],
-                          'tujuan_desa' => $request['tujuan_desa'],
-                          'tujuan_kecamatan' => $request['tujuan_kecamatan'],
-                          'tujuan_kabupaten' => $request['tujuan_kabupaten'],
-                          'tujuan_provinsi' => $request['tujuan_provinsi'],
-                          'jumlah_pindah' => $request['jumlah_pindah'],                              
-                        ]);    
-              $cek_id = DB::table('data_pengantar_pindah')
-                          ->orderBy('id','desc')
-                          ->first();
-              break;
+              $data = DB::table('data_pernyataan_dom') 
+                            ->insert([
+                              'nik' => $request['nik'],
+                              'nama' => $request['nama'],
+                              'tmpt_lahir' => $request['tmpt_lahir'],
+                              'tgl_lahir' => $request['tgl_lahir'],
+                              'alamat' => $request['alamat'],
+                              'agama' => $request['agama'],
+                              'pekerjaan' => $request['pekerjaan'],
+                              'jk' => $request['jk'],
+                              'alamat_baru' => $request['alamat_baru'],                        
+                            ]);                               
+                  $cek_id = DB::table('data_pernyataan_dom')
+                              ->orderBy('id','desc')
+                              ->first();
+                  break;
             //permohonan pindah
             case ('5'):
               $db = DB::table('data_permohonan_pindah') 
@@ -316,48 +364,30 @@ class WargaController extends Controller
               break;
             //permohonan pindah datang
             case ('7'):
-              $db = DB::table('data_permohonan_pindah_datang') 
-                        ->insert([
-                          'no_kk' => $request['no_kk'],
-                          'nama_kk' => $request['nama_kk'],
-                          'alamat' => $request['alamat'],
-                          'desa' => $request['desa'],
-                          'kecamatan' => $request['kecamatan'],
-                          'kabupaten' => $request['kabupaten'],
-                          'provinsi' => $request['provinsi'],
-                          'kodepos' => $request['kodepos'],
-                          'nik_pemohon' => $request['nik_pemohon'],
-                          'tmpt_lahir' => $request['tmpt_lahir'],
-                          'tgl_lahir' => $request['tgl_lahir'],
-                          'tgl_datang' => $request['tgl_datang'],
-
-                          'nama' => $request['nama'],
-                          'tujuan_kk' => $request['tujuan_kk'],
-                          'tujuan_no_kk' => $request['tujuan_no_kk'],
-                          'tujuan_nama_kk' => $request['tujuan_nama_kk'],
-                          'tujuan_alamat' => $request['tujuan_alamat'],
-                          'tujuan_desa' => $request['tujuan_desa'],
-                          'tujuan_kecamatan' => $request['tujuan_kecamatan'],
-                          'tujuan_kabupaten' => $request['tujuan_kabupaten'],
-                          'tujuan_provinsi' => $request['tujuan_provinsi'], 
-                          'tujuan_kodepos' => $request['tujuan_kodepos'],                               
-                        ]);    
-                  $cek_id = DB::table('data_permohonan_pindah_datang')
+              $data = DB::table('data_ket_tidakmampu') 
+                            ->insert([
+                              'nama' => $request['nama'],
+                              'nik' => $request['nik'],
+                              'tempat_lahir' => $request['tempat_lahir'],
+                              'tgl_lahir' => $request['tgl_lahir'],
+                              'agama' => $request['agama'],
+                              'status_perkawinan' =>$request['status_kawin'],
+                              'pekerjaan' => $request['pekerjaan'],
+                              'alamat' => $request['alamat'],
+                              'nama_t' => $request['nama_t'],
+                              'nik_t' => $request['nik_t'],
+                              'tempat_lahir_t' =>$request['tempat_lahir_t'],
+                              'tgl_lahir_t' => $request['tgl_lahir_t'],
+                              'agama_t' => $request['agama_t'],
+                              'status_kawin_t' =>$request['status_kawin_t'],
+                              'pekerjaan_t' => $request['pekerjaan_t'],
+                              'alamat_t' => $request['alamat_t'],                              
+                            ]); 
+                          
+                  $cek_id = DB::table('data_ket_tidakmampu')
                               ->orderBy('id','desc')
                               ->first();
-                  $data = $request['data'];
-                  $jml = count($request->data['nik']);
-                  for ($i = 0; $i < $jml; $i++) {
-                    $keluarga = DB::table('keluarga_perm_datang') 
-                            ->insert([
-                              'nik' => $data['nik'][$i],
-                              'nama' => $data['nama_kel'][$i],
-                              'masa_berlaku' => $data['masa'][$i],  
-                              'shdk' => $data['shdk'][$i],
-                              'id_perm_pindah' => $cek_id->id,                            
-                            ]); 
-                  }
-              break;
+                  break;
           }
 
         $pengajuan = DataPengajuan::create([

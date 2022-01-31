@@ -12,7 +12,7 @@
         
             <div class="form-group col-md-10 m-0">
                 <select name="status" class="form-control mt-2 mb-2">
-                    <option selected value="all">semua</option>
+                    <option selected value="all">Semua</option>
                     <option value="0">Proses</option>
                     <option value="1">Verifikasi</option>
                     <option value="2">Jadi</option>
@@ -78,7 +78,7 @@
                 </tr>
                 @empty
                     <tr>
-                        <td colspan="4">Belum Ada Data</td>
+                        <td colspan="9">Belum Ada Data</td>
                     </tr>
                 @endforelse
             </tbody>
